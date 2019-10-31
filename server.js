@@ -3,8 +3,6 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-app.use(bodyParser.json())
-
 const database = {
     users: [
         {
@@ -14,6 +12,21 @@ const database = {
             email: 'john@gmail.com',
             entries: 0,
             joined: new Date()
+        },
+        {
+            id: '124',
+            name: 'Sally',
+            password: 'bananas',
+            email: 'sally@gmail.com',
+            entries: 0,
+            joined: new Date()  
         }
     ]
 }
+
+app.use(bodyParser.json());
+app.use(cors())
+
+app.get('/', (req,res)=>{
+    res.send(database.users);
+})
